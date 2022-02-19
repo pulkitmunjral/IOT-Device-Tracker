@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<form method="POST">
+
+<div>
+    <div><h1>Welcome to SmarterCodes Assesment</h1></div><br><br>
+    <h2><div>Select Date Range</div><br>
+{% csrf_token %}
+    Start Date &emsp; <input type="text" placeholder="YYYY-MM-DD" name="start_date" value="{%if start_date %}{{start_date}}{% endif %}"><br>
+    End Date    &emsp; <input type="text" placeholder="YYYY-MM-DD" name="end_date" value="{%if end_date%}{{end_date}}{% endif %}"><br>
+    <button type="submit" name="action" value="submit">Submit</button>
+    <button type="submit" name="action" value="reset">Reset Date</button>
+            </h2>
+    {%if context %}
+        {% for element in context %}
+            <div>
+                Site Name {{element.site_name}}
+                Latitude {{element.latitude}}
+                Longitude {{element.longitude}}
+                IP Address {{element.ip_address}}
+                Time Stamp {{element.timestamp}}
+            </div>
+        {% endfor %}
+    {% elif start_date and end_date%}
+    <div><h2>No rows were found for your give range</h2></div>
+    {% endif %}
+
+</div>
+</form>
+</html>
