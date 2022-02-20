@@ -48,17 +48,23 @@ def load_data(request):
                                       ip_address=ip_address, timestamp=timestamp, datastream=len(datastream))
             data_object.save()
     except Exception as e:
-        msg(e)
+        custom_error(e)
         print(e)
     return redirect('details')
 
 
-def msg(error):
+def custom_error(request, *args, **argv):
+    if request.method == "POST" and 'action' in request.POST and request.POST['action'] == "redirect":
+        return redirect('details')
+
     subject = 'The website ran into trouble!!'
-    message = f'Hi , SmaterCode assesmet sever ran into trouble by error {error}'
+    message = f'Hi , SmaterCode assesmet sever ran into trouble by error {args} and {argv}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = ['pulkit.munjral@gmail.com', ]
     send_mail(subject, message, email_from, recipient_list)
+
+    return render(request, 'custom_error.html')
+
 
 
 # from rest_framework.generics import GenericAPIView
