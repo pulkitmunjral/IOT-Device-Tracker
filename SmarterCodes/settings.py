@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=-ogn6ly&gs+tmx2m4$1kyi8%e=r7l))3i9$gs@l1$qck)!@=n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['smartercodesassesment.herokuapp.com', '127.0.0.1']
 
@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'assesment',
-    'rest_framework_swagger',
     'rest_framework',
+    # 'rest_framework_swagger',
 ]
 
 REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'}
