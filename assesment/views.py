@@ -45,7 +45,7 @@ def load_data(request):
             date_time_obj = datetime.strptime(timestamp, '%m/%d/%Y')
             timestamp = date_time_obj.strftime('%Y-%m-%d')
             data_object = Data(site_name=site_name, latitude=latitude, longitude=longitude,
-                                      ip_address=ip_address, time_stamp=timestamp, dataframe=len(datastream))
+                                      ip_address=ip_address, time_stamp=timestamp, dataframe=str(len(datastream)))
             data_object.save()
     except Exception as e:
         custom_error(e)
