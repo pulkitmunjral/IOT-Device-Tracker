@@ -20,3 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('assesment.urls')),
 ]
+
+handler500 = "assesment.views.custom_error"
+handler400 = "assesment.views.custom_error"
+handler403 = "assesment.views.custom_error"
+handler404 = "assesment.views.custom_error"
