@@ -23,7 +23,7 @@ def details(request, start_date=None, end_date=None):
     #     context = cache.get(start_date+end_date)
     #     print("from cache")
     else:
-        context = Data.objects.filter(time_stamp__lte=end_date, time_stamp__gte=start_date).order_by('timestamp')
+        context = Data.objects.filter(time_stamp__lte=end_date, time_stamp__gte=start_date).order_by('time_stamp')
         # cache.set(start_date+end_date, context)
         # print("from db")
     return render(request, "details.html", {'context': context, 'start_date': start_date, 'end_date': end_date})
