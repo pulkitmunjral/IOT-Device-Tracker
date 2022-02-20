@@ -5,7 +5,6 @@ from datetime import datetime
 from django.conf import settings
 from django.core.mail import send_mail
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
-from django.views.decorators.cache import cache_page
 from django.core.cache import cache
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
@@ -46,7 +45,7 @@ def load_data(request):
             date_time_obj = datetime.strptime(timestamp, '%m/%d/%Y')
             timestamp = date_time_obj.strftime('%Y-%m-%d')
             data_object = Data(site_name=site_name, latitude=latitude, longitude=longitude,
-                                      ip_address=ip_address, timestamp=timestamp)
+                                      ip_address=ip_address, timestamp=timestamp, datastream=len(datastream))
             data_object.save()
     except Exception as e:
         msg(e)
@@ -60,3 +59,27 @@ def msg(error):
     email_from = settings.EMAIL_HOST_USER
     recipient_list = ['pulkit.munjral@gmail.com', ]
     send_mail(subject, message, email_from, recipient_list)
+
+
+# from rest_framework.generics import GenericAPIView
+# from .serializers import DataSerializer
+# class details(GenericAPIView):
+#     serializer_class = DataSerializer
+#
+#     def post(self, request, start_date=None, end_date=None):
+#         if request.method == "POST" and 'action' in request.POST:
+#             if request.POST['action'] == "submit":
+#                 start_date = request.POST['start_date']
+#                 end_date = request.POST['end_date']
+#             elif request.POST['action'] == "reset":
+#                 return redirect("details")
+#         if start_date is None or end_date is None or start_date == "" or end_date == "":
+#             start_date, end_date, context = False, False, False
+#         elif cache.get(start_date+end_date):
+#             context = cache.get(start_date+end_date)
+#             print("from cache")
+#         else:
+#             context = Data.objects.filter(timestamp__lte=end_date, timestamp__gte=start_date).order_by('timestamp')
+#             cache.set(start_date+end_date, context)
+#             print("from db")
+#         return render(request, "details.html", {'context': context, 'start_date': start_date, 'end_date': end_date})
