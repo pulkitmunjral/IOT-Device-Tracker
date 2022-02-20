@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=-ogn6ly&gs+tmx2m4$1kyi8%e=r7l))3i9$gs@l1$qck)!@=n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['smartercodesassesment.herokuapp.com']
+ALLOWED_HOSTS = ['smartercodesassesment.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'assesment',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,18 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+CACHE_TTL = 60*1500
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        },
+        "KEY_PREFIX": "example"
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

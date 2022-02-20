@@ -4,6 +4,11 @@ import requests
 from datetime import datetime
 from django.conf import settings
 from django.core.mail import send_mail
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
+
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 
 def details(request, start_date=None, end_date=None):
@@ -15,9 +20,13 @@ def details(request, start_date=None, end_date=None):
             return redirect("details")
     if start_date is None or end_date is None or start_date == "" or end_date == "":
         start_date, end_date, context = False, False, False
+    elif cache.get(start_date+end_date):
+        context = cache.get(start_date+end_date)
+        print("from cache")
     else:
         context = Data.objects.filter(timestamp__lte=end_date, timestamp__gte=start_date).order_by('timestamp')
-
+        cache.set(start_date+end_date, context)
+        print("from db")
     return render(request, "details.html", {'context': context, 'start_date': start_date, 'end_date': end_date})
 
 
