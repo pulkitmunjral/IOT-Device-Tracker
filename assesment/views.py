@@ -23,7 +23,7 @@ def details(request, start_date=None, end_date=None):
     #     context = cache.get(start_date+end_date)
     #     print("from cache")
     else:
-        context = Data.objects.filter(timestamp__lte=end_date, timestamp__gte=start_date).order_by('timestamp')
+        context = Data.objects.filter(time_stamp__lte=end_date, time_stamp__gte=start_date).order_by('timestamp')
         # cache.set(start_date+end_date, context)
         # print("from db")
     return render(request, "details.html", {'context': context, 'start_date': start_date, 'end_date': end_date})
@@ -45,7 +45,7 @@ def load_data(request):
             date_time_obj = datetime.strptime(timestamp, '%m/%d/%Y')
             timestamp = date_time_obj.strftime('%Y-%m-%d')
             data_object = Data(site_name=site_name, latitude=latitude, longitude=longitude,
-                                      ip_address=ip_address, timestamp=timestamp, datastream=len(datastream))
+                                      ip_address=ip_address, time_stamp=timestamp, datastream=len(datastream))
             data_object.save()
     except Exception as e:
         custom_error(e)
