@@ -6,20 +6,27 @@
 <div>
     <div><h1>Welcome to SmarterCodes Assesment</h1></div><br><br>
     <h2><div>Select Date Range</div><br>
-{% csrf_token %}
+    {% csrf_token %}
     Start Date &emsp; <input type="text" placeholder="YYYY-MM-DD" name="start_date" value="{%if start_date %}{{start_date}}{% endif %}"><br>
     End Date    &emsp; <input type="text" placeholder="YYYY-MM-DD" name="end_date" value="{%if end_date%}{{end_date}}{% endif %}"><br>
     <button type="submit" name="action" value="submit">Submit</button>
     <button type="submit" name="action" value="reset">Reset Date</button>
             </h2>
     {%if context %}
+    <h2>Please find the details from date: "{{start_date}}" till date: "{{end_date}}" </h2>
         {% for element in context %}
             <div>
-                Site Name {{element.site_name}}
-                Latitude {{element.latitude}}
-                Longitude {{element.longitude}}
-                IP Address {{element.ip_address}}
-                Time Stamp {{element.time_stamp}}
+                <h4>
+                Site Name: {{element.site_name}}<br>
+                Latitude: {{element.latitude}}<br>
+                Longitude: {{element.longitude}}<br>
+                IP Address: {{element.ip_address}}<br>
+                Time Stamp: {{element.time_stamp}}<br>
+                DataStream: [{% for i in element.dataframe %}
+                    {}
+                    {% endfor %}
+                    ]
+                </h4>
             </div>
         {% endfor %}
     {% elif start_date and end_date%}
