@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=-ogn6ly&gs+tmx2m4$1kyi8%e=r7l))3i9$gs@l1$qck)!@=n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ['DEBUG']
 
 ALLOWED_HOSTS = ['smartercodesassesment.herokuapp.com', '127.0.0.1']
 
@@ -142,8 +142,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'uschat.cf@gmail.com'
-EMAIL_HOST_PASSWORD = 'kyondssan@0406'
+EMAIL_HOST_USER = os.environ['email']
+EMAIL_HOST_PASSWORD = os.environ['email_pass']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
