@@ -56,12 +56,14 @@ def load_data(request):
 def custom_error(request, *args, **argv):
     if request.method == "POST" and 'action' in request.POST and request.POST['action'] == "redirect":
         return redirect('details')
-
-    subject = 'The website ran into trouble!!'
-    message = f'Hi , SmaterCode assesmet sever ran into trouble by error {args} and {argv}'
-    email_from = settings.EMAIL_HOST_USER
-    recipient_list = ['pulkit.munjral@gmail.com', ]
-    send_mail(subject, message, email_from, recipient_list)
+    try:
+        subject = 'The website ran into trouble!!'
+        message = f'Hi , SmaterCode assesmet sever ran into trouble by error {args} and {argv}'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = ['pulkit.munjral@gmail.com', ]
+        send_mail(subject, message, email_from, recipient_list)
+    except Exception as e:
+        return render(request, 'custom_error.html')
 
     return render(request, 'custom_error.html')
 
