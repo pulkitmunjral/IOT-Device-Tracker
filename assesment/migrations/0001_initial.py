@@ -19,8 +19,8 @@ class Migration(migrations.Migration):
                 ('latitude', models.FloatField()),
                 ('longitude', models.FloatField()),
                 ('ip_address', models.GenericIPAddressField()),
-                ('timestamp', models.DateField(default='0000-01-01')),
-                ('datastream', models.TextField(default='9')),
+                ('timestamp', models.DateField()),
+                ('datastream', models.TextField()),
             ],
         ),
     ]

@@ -7,4 +7,4 @@ class Data(models.Model):
     longitude = models.FloatField()
     ip_address = models.GenericIPAddressField()
     timestamp = models.DateTimeField()
-    # datastream = models.TextField()
+    datastream = models.TextField()
