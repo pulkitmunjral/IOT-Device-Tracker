@@ -6,5 +6,5 @@ class Data(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     ip_address = models.GenericIPAddressField()
-    time_stamp = models.DateField()
+    timestamp = models.DateField()
     datastream = models.IntegerField()

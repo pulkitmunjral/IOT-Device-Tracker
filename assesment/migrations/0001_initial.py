@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('longitude', models.FloatField()),
                 ('ip_address', models.GenericIPAddressField()),
                 ('timestamp', models.DateField()),
-                ('datastream', models.TextField()),
+                ('datastream', models.IntegerField()),
             ],
         ),
     ]
