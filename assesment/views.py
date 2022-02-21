@@ -121,7 +121,7 @@ def custom_error(request, *args, **argv):
         recipient_list = ['pulkit.munjral@gmail.com', ]
         send_mail(subject, message, email_from, recipient_list)
     except Exception as e:
-        print("ran into error while sending email ",e)
+        print("ran into error while sending email ", e)
         return render(request, 'custom_error.html')
 
     return render(request, 'custom_error.html')
