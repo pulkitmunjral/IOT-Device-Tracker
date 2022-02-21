@@ -63,7 +63,7 @@ class Details(GenericAPIView):
         else:
             pass
 
-        #      returning get route with variables for html response
+        #   returning get route with variables for html response
         return self.get(request, start_date, end_date)
 
 
