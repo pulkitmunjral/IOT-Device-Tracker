@@ -5,6 +5,7 @@ from django.views.generic import RedirectView
 
 schema_view = get_swagger_view(title="anything")
 
+#   registered url routes for details, load, swagger
 urlpatterns = [
     path('', RedirectView.as_view(url='details/')),
     path('details/start_date=<str:start_date>/end_date=<str:end_date>', views.Details.as_view(), name='filtered_details'),
