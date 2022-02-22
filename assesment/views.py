@@ -25,17 +25,15 @@ class Details(GenericAPIView):
             start_date, end_date, context = False, False, False
 
         #   checking if data is already present in cache server
-        # elif cache.get(start_date+end_date):
-        #     context = cache.get(start_date+end_date)
-        #   storing data in context variable
-        #     print("from cache")
+        elif cache.get(start_date+end_date):
+            context = cache.get(start_date+end_date)
+            print("from cache")
 
         #   Fetching data from db from start_date to end_date inclusive, ordered by time, stored in context variable
         else:
+            # storing data to cache server
             context = Data.objects.filter(time_stamp__lte=end_date, time_stamp__gte=start_date).order_by('time_stamp')
-            #   storing data to cache server
-            # cache.set(start_date+end_date, context)
-            # print("from db")
+            cache.set(start_date+end_date, context)
 
         #   returning the details template with data variables
         return render(request, "details.html", {'context': context, 'start_date': start_date, 'end_date': end_date})
