@@ -1,6 +1,6 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
-# [SmarterCodes Assessment](https://smartercodes.herokuapp.com) 
+# SmarterCodes Assessment [![URL](https://github.com/pulkitmunjral/SmarterCodes/blob/with_swagger/screen_shots/7.PNG)](https://smartercodes.herokuapp.com) 
 > The website provides visualization of different server data with date wise filter.
 
 
