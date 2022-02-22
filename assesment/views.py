@@ -22,21 +22,22 @@ class Details(GenericAPIView):
 
         #   Handling any invalid value for start_date and end_date
         if start_date is None or end_date is None or start_date == "" or end_date == "":
-            start_date, end_date, context = False, False, False
+            start_date, end_date, context, comment = False, False, False, False
 
         #   checking if data is already present in cache server
         elif cache.get(start_date+end_date):
             context = cache.get(start_date+end_date)
-            print("from cache")
+            comment = "from Redis Cache server"
 
         #   Fetching data from db from start_date to end_date inclusive, ordered by time, stored in context variable
         else:
             # storing data to cache server
             context = Data.objects.filter(time_stamp__lte=end_date, time_stamp__gte=start_date).order_by('time_stamp')
             cache.set(start_date+end_date, context)
+            comment = "from DB server"
 
         #   returning the details template with data variables
-        return render(request, "details.html", {'context': context, 'start_date': start_date, 'end_date': end_date})
+        return render(request, "details.html", {'context': context, 'start_date': start_date, 'end_date': end_date, 'comment': comment})
 
     #   route for post response
     def post(self, request, start_date=None, end_date=None):

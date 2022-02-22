@@ -13,7 +13,7 @@
     <button type="submit" name="action" value="reset">Reset Date</button>
             </h2>
     {%if context %}
-    <h2>Please find the details from date: "{{start_date}}" till date: "{{end_date}}" </h2>
+    <h2>Please find the details from date: "{{start_date}}" till date: "{{end_date}}" {{comment}} </h2>
         {% for element in context %}
             <div>
                 <h4>
