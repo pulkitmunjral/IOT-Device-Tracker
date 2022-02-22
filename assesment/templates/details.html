@@ -3,8 +3,9 @@
 
 <form method="POST">
 
-<div>
-    <div><h1>Welcome to SmarterCodes Assesment</h1></div><br><br>
+<div style="text-align: center;">
+    <div><h1>Welcome to SmarterCodes Assesment</h1></div><br>
+    <a href="https://github.com/pulkitmunjral/SmarterCodes/" target="_blank">User Guide</a><br>
     <h2><div>Select Date Range</div><br>
     {% csrf_token %}
     Start Date &emsp; <input type="text" placeholder="YYYY-MM-DD" name="start_date" value="{%if start_date %}{{start_date}}{% endif %}"><br>
@@ -13,7 +14,7 @@
     <button type="submit" name="action" value="reset">Reset Date</button>
             </h2>
     {%if context %}
-    <h2>Please find the details from date: "{{start_date}}" till date: "{{end_date}}" {{comment}} </h2>
+    <h2>Please find the details<br>From: "{{start_date}}"  Till: "{{end_date}}"<br> {{comment}} </h2>
         {% for element in context %}
             <div>
                 <h4>

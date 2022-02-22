@@ -27,14 +27,14 @@ class Details(GenericAPIView):
         #   checking if data is already present in cache server
         elif cache.get(start_date+end_date):
             context = cache.get(start_date+end_date)
-            comment = "from Redis Cache server"
+            comment = "From Redis Cache server"
 
         #   Fetching data from db from start_date to end_date inclusive, ordered by time, stored in context variable
         else:
             # storing data to cache server
             context = Data.objects.filter(time_stamp__lte=end_date, time_stamp__gte=start_date).order_by('time_stamp')
             cache.set(start_date+end_date, context)
-            comment = "from DB server"
+            comment = "From DB server"
 
         #   returning the details template with data variables
         return render(request, "details.html", {'context': context, 'start_date': start_date, 'end_date': end_date, 'comment': comment})
