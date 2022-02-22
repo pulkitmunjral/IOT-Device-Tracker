@@ -117,7 +117,7 @@ def custom_error(request, *args, **argv):
         subject = 'The website ran into trouble!!'
         message = f'Hi , SmaterCode assesmet sever ran into trouble by error {args} and {argv}'
         email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['pulkit.munjral@gmail.com', ]
+        recipient_list = ['pulkit.singh0406@gmail.com', ]
         send_mail(subject, message, email_from, recipient_list)
     except Exception as e:
         print("ran into error while sending email ", e)
