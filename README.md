@@ -1,11 +1,11 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
-# [#](https://smartercodes.herokuapp.com)  SmarterCodes Assessment
+# [#] IOT Device Tracker
 > The website provides visualization of different server data with date wise filter.
 
 
 ## User Guide
-> 1. Open the [SmarterCodes](https://smartercodes.herokuapp.com) website
+> 1. Open the IOT Device Tracker website
 > 2. Enter the desired range of start and end date and press submit.
 > 3. The results are displayed straight from the database and are stored in cache server.
 >![App Screenshot](https://github.com/pulkitmunjral/SmarterCodes/blob/with_swagger/screen_shots/1.PNG)
